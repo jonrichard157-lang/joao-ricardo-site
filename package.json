@@ -1,0 +1,15 @@
+{
+  "name": "joao-ricardo-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institucional / landing page comercial de João Ricardo — sites e landing pages para pequenos negócios.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
