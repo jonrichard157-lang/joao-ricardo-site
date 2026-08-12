@@ -1,0 +1,8 @@
+/* Ordem importa: variáveis primeiro, depois reset/base, depois
+   estrutura, depois componentes, e por fim os ajustes finos. */
+@import "./variables.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./responsive.css";
+@import "./animations.css";

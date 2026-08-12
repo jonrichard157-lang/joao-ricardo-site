@@ -1,0 +1,44 @@
+/* Breakpoints principais já são tratados junto de cada componente em
+   components.css / layout.css. Este arquivo cobre ajustes finos que
+   não pertencem a um componente específico. */
+
+@media (max-width: 860px) {
+  .case {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  section {
+    padding: 64px 0;
+  }
+
+  .hero {
+    padding-top: 120px;
+  }
+
+  .final-cta {
+    padding: 72px 0;
+  }
+
+  .lead-form {
+    padding: var(--space-5);
+  }
+
+  .hero-ctas .btn,
+  .final-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Garante que o botão flutuante do WhatsApp nunca sobreponha o rodapé
+   em telas muito curtas / conteúdo curto */
+@media (max-height: 480px) {
+  .wa-float {
+    bottom: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+  }
+}

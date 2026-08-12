@@ -1,1 +1,14 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--duration-slow) ease, transform var(--duration-slow) ease;
+}
 
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* prefers-reduced-motion já é tratado globalmente em base.css,
+   que zera durações de animação/transição — mantém-se aqui apenas
+   a intenção documentada para quem editar este arquivo. */
