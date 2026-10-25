@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f8f3e3;
+  --color-paper: #fffcf4;
+  --color-sand: #ecdfc2;
+  --color-ink: #222222;
+  --color-muted: #5a5248;
+  --color-forest: #182421;
+  --color-moss: #2b3a35;
+  --color-sage: #b6c6a5;
+  --color-amber: #e2a23b;
+  --color-rust: #9c4221;
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --shadow-frame: 0 1px 0 rgb(34 34 34 / 0.06), 0 18px 40px -18px rgb(60 38 14 / 0.35);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    @apply bg-cream font-serif text-ink antialiased;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-balance;
+    font-optical-sizing: auto;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    @apply bg-amber text-ink;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-rust);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-amber);
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-10;
+  }
+  .section {
+    @apply py-20 sm:py-24 lg:py-32;
+  }
+  .lede {
+    @apply max-w-[62ch] text-lg leading-relaxed text-muted sm:text-xl;
+  }
+}
+
+/* Única animação automática do site: a composição do hero se monta ao carregar. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-frame {
+    animation: frame-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes frame-in {
+    from {
+      opacity: 0;
+      transform: translateY(28px) rotate(var(--tilt, 0deg));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--tilt, 0deg));
+    }
+  }
+}
+.hero-frame {
+  transform: rotate(var(--tilt, 0deg));
+}

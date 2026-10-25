@@ -1,15 +1,26 @@
 {
-  "name": "joao-ricardo-site",
+  "name": "veyzatech-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Site institucional / landing page comercial de João Ricardo — sites e landing pages para pequenos negócios.",
+  "description": "Site oficial da VeyzaTech — desenvolvimento web freelancer por João Ricardo.",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "vite": "^5.4.0"
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
   }
 }
