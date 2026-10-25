@@ -31,6 +31,7 @@ jobs:
           VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
           VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
           VITE_FORM_ENDPOINT: ${{ vars.VITE_FORM_ENDPOINT }}
+          VITE_VETRA_WHATSAPP: ${{ vars.VITE_VETRA_WHATSAPP }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

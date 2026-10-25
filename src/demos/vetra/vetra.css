@@ -1,0 +1,76 @@
+@import "tailwindcss" source(none);
+@source "./";
+
+@theme {
+  --color-chalk: #edebe5;
+  --color-paper: #f7f6f2;
+  --color-iron: #16171a;
+  --color-graphite: #2a2c31;
+  --color-steel: #5d6168;
+  --color-cobalt: #2b47e6;
+  --color-cobalt-deep: #1d33b3;
+  --color-cobalt-soft: #c9d1fb;
+
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 4.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    @apply bg-chalk font-sans text-iron antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-cobalt);
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible {
+    outline-color: #fff;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-10;
+  }
+  /* Títulos condensados: a largura variável da Archivo é a identidade da marca. */
+  .display {
+    font-stretch: 62%;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+  }
+  .wide {
+    font-stretch: 125%;
+  }
+}
+
+/* Única animação automática: a foto do hero assenta ao carregar. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-photo {
+    animation: settle 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  @keyframes settle {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}

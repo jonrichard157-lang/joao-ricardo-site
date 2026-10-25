@@ -35,6 +35,7 @@ secretas nelas. Configure em `.env.local` ou na Vercel
 | `VITE_WHATSAPP_NUMBER` | Número com DDI+DDD, só dígitos (ex.: `5511999998888`) | Botões de WhatsApp são trocados por "Enviar pedido pelo formulário" |
 | `VITE_CONTACT_EMAIL` | E-mail exibido no contato e no rodapé | E-mail não aparece |
 | `VITE_FORM_ENDPOINT` | URL `https://` que recebe o formulário via `POST` JSON | O formulário valida, mas **não envia**: avisa o visitante e oferece WhatsApp, e-mail ou copiar o texto |
+| `VITE_VETRA_WHATSAPP` | WhatsApp da landing page Vetra Academia (demo) | Os CTAs da demo mostram a mensagem pré-preenchida em uma janela, sem abrir conversa |
 | `VITE_SITE_URL` | Domínio final (reservado para uso futuro) | — |
 
 ### Formulário
@@ -89,6 +90,51 @@ src/
                          # Contact, QuoteForm, Footer e peças reutilizáveis
 ```
 
+## Landing pages demonstrativas
+
+Além do portfólio, o projeto gera landing pages independentes que aparecem
+na seção Demonstrações (`src/data/demos.ts`).
+
+### Vetra Academia — `/demos/vetra-academia/`
+
+Landing page de uma academia **fictícia**, feita para gerar pedidos de visita
+pelo WhatsApp. Ela tem identidade própria (Archivo condensada, giz, ferro e
+azul cobalto) e não compartilha estilos com o portfólio.
+
+| Caminho | Conteúdo |
+| --- | --- |
+| `demos/vetra-academia/index.html` | HTML da página (título, descrição, `noindex`) |
+| `src/demos/vetra/data/content.ts` | Textos, horários, benefícios, áreas, planos, diferenciais, depoimentos, FAQ e mensagens do WhatsApp |
+| `src/demos/vetra/components/` | Seções (cada uma com composição própria) |
+| `src/demos/vetra/whatsapp.tsx` | CTAs de WhatsApp e modo demonstração |
+| `public/demos/vetra-academia/img/` | Fotos em WebP (1 tamanho grande + 640px) |
+
+Comportamento dos CTAs de WhatsApp:
+
+- **Sem `VITE_VETRA_WHATSAPP`** (padrão da demo): cada botão abre uma janela
+  explicando que é uma demonstração e mostrando a mensagem pré-preenchida.
+  Nenhum link aponta para um número inexistente.
+- **Com `VITE_VETRA_WHATSAPP`**: os botões viram links `wa.me` reais, e o
+  formulário de visita abre o WhatsApp com nome, telefone, objetivo e período.
+
+O formulário não envia dados a nenhum servidor: ele só valida os campos e
+monta a mensagem do WhatsApp.
+
+Honestidade do conteúdo: a página exibe um aviso de marca fictícia no topo e
+no rodapé, os valores dos planos são marcados como ilustrativos (sem descontos,
+cronômetros ou urgência), e os depoimentos são identificados como exemplos
+fictícios. A página tem `noindex` para não aparecer em buscas como se fosse
+uma academia real.
+
+**Fotos:** geradas por IA (Figma AI), sem marcas de equipamentos, e
+identificadas como ilustrativas no rodapé. Para um cliente real, troque os
+arquivos em `public/demos/vetra-academia/img/` mantendo os mesmos nomes e
+tamanhos, ou ajuste os nomes em `content.ts` e nos componentes.
+
+**Para adaptar a um cliente real:** edite `content.ts`, troque as fotos,
+defina `VITE_VETRA_WHATSAPP`, remova o `DemoBanner` (`components/Header.tsx`),
+o `noindex` do HTML e a nota de demonstração do rodapé.
+
 ## Identidade visual
 
 - Base creme `#F8F3E3`, texto grafite `#222222`
@@ -122,8 +168,9 @@ O caminho base vem de `BASE_PATH` (definido no workflow); na Vercel ele não
 ## Antes de publicar
 
 - [ ] Definir `VITE_WHATSAPP_NUMBER`, `VITE_CONTACT_EMAIL` e `VITE_FORM_ENDPOINT`
-- [ ] Revisar textos de LeadFinder e Ellus Academia em `projects.ts` (marcados com `TODO`)
+- [ ] Revisar o texto do LeadFinder em `projects.ts` (marcado com `TODO`)
 - [ ] Revisar as listas de tecnologias em `content.ts`
 - [ ] Adicionar capturas reais e `liveUrl` dos projetos publicados
 - [ ] Publicar as demos e mudar `availability` para `disponivel` com a `url`
 - [ ] Canonical e `og:image` absolutos após definir o domínio
+- [ ] Opcional: `VITE_VETRA_WHATSAPP` para a demo da Vetra abrir conversas reais

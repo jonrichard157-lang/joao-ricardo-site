@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* As demos têm o próprio CSS; não gerar as classes delas aqui. */
+@source not "./demos";
 
 @theme {
   --color-cream: #f8f3e3;
