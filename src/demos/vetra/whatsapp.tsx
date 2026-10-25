@@ -25,14 +25,14 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
       <dialog
         ref={dialogRef}
         aria-labelledby="wa-demo-title"
-        className="m-auto w-[min(92vw,520px)] rounded-2xl bg-paper p-0 text-iron backdrop:bg-iron/70"
+        className="m-auto w-[min(92vw,520px)] rounded-3xl border border-line bg-void p-0 text-fog backdrop:bg-ink/80"
         onClick={(e) => e.target === dialogRef.current && dialogRef.current?.close()}
       >
         <div className="p-6 sm:p-8">
-          <h2 id="wa-demo-title" className="display text-4xl">
-            Demonstração
+          <h2 id="wa-demo-title" className="text-2xl font-semibold">
+            <span className="mark">Demonstração</span>
           </h2>
-          <p className="mt-4 text-steel">
+          <p className="mt-4 text-sm text-ash">
             Esta página é um modelo da VeyzaTech e não está ligada a um WhatsApp real. Em um site publicado, este botão
             abriria a conversa com a academia já com esta mensagem:
           </p>
@@ -40,7 +40,7 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
             {message}
           </blockquote>
           <form method="dialog" className="mt-6">
-            <button className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-iron px-6 font-semibold text-paper hover:bg-graphite">
+            <button className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-fog px-6 font-semibold text-void hover:bg-white">
               Entendi
             </button>
           </form>

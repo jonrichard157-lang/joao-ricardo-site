@@ -29,7 +29,7 @@ export function MobileBar() {
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-30 border-t border-iron/10 bg-paper/95 p-3 backdrop-blur-sm transition-transform duration-200 md:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-30 border-t border-line bg-ink/95 p-3 backdrop-blur-sm transition-transform duration-200 md:hidden ${
         show ? "translate-y-0" : "pointer-events-none translate-y-full"
       }`}
       aria-hidden={!show}
@@ -37,10 +37,10 @@ export function MobileBar() {
       data-testid="mobile-bar"
     >
       <div className="flex gap-2">
-        <a href="#planos" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border-2 border-iron font-semibold">
+        <a href="#planos" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-fog/70 text-sm font-semibold">
           Planos
         </a>
-        <WaCta message={messages.visit} className="inline-flex min-h-12 flex-[2] items-center justify-center gap-2 rounded-full bg-cobalt font-semibold text-paper">
+        <WaCta message={messages.visit} className="inline-flex min-h-12 flex-[2] items-center justify-center gap-2 rounded-full bg-signal text-sm font-semibold text-fog">
           <WaIcon /> Agendar visita
         </WaCta>
       </div>

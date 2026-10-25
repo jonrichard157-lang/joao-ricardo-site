@@ -2,16 +2,17 @@
 @source "./";
 
 @theme {
-  --color-chalk: #edebe5;
-  --color-paper: #f7f6f2;
-  --color-iron: #16171a;
-  --color-graphite: #2a2c31;
-  --color-steel: #5d6168;
-  --color-cobalt: #2b47e6;
-  --color-cobalt-deep: #1d33b3;
-  --color-cobalt-soft: #c9d1fb;
+  --color-ink: #161616;
+  --color-void: #000000;
+  --color-smoke: #262626;
+  --color-line: #3a3a3a;
+  --color-fog: #f2f2f2;
+  --color-ash: #9a9a9a;
+  --color-signal: #2b47e6;
+  --color-signal-soft: #9fb0ff;
+  --color-volt: #ffc700;
 
-  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 @layer base {
@@ -25,8 +26,8 @@
     }
   }
   body {
-    @apply bg-chalk font-sans text-iron antialiased;
-    font-size: 1.0625rem;
+    @apply bg-ink font-sans text-fog antialiased;
+    font-size: 1rem;
     line-height: 1.6;
   }
   h1,
@@ -34,43 +35,78 @@
   h3 {
     text-wrap: balance;
   }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    @apply bg-signal text-fog;
+  }
   :focus-visible {
-    outline: 3px solid var(--color-cobalt);
+    outline: 2px solid var(--color-signal-soft);
     outline-offset: 3px;
   }
-  .on-dark :focus-visible {
-    outline-color: #fff;
+  .on-light :focus-visible {
+    outline-color: var(--color-void);
   }
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-10;
+    @apply mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-12;
   }
-  /* Títulos condensados: a largura variável da Archivo é a identidade da marca. */
-  .display {
-    font-stretch: 62%;
-    font-weight: 800;
+  /* Palavras gigantes: monoespaçada apertada, como no hero do template. */
+  .giant {
+    font-weight: 500;
     text-transform: uppercase;
-    line-height: 0.92;
-    letter-spacing: -0.01em;
+    line-height: 0.82;
+    letter-spacing: -0.07em;
   }
-  .wide {
-    font-stretch: 125%;
+  /* Rótulo de seção com o traço vermelho por trás do texto. */
+  .mark {
+    background-image: linear-gradient(
+      to top,
+      transparent 0.08em,
+      var(--color-signal) 0.08em,
+      var(--color-signal) 0.36em,
+      transparent 0.36em
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .pill {
+    @apply inline-flex items-center justify-center rounded-full border border-fog/70 px-3.5 py-1 leading-tight transition-colors hover:bg-fog hover:text-void;
   }
 }
 
-/* Única animação automática: a foto do hero assenta ao carregar. */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-photo {
-    animation: settle 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  /* Leque de fotos do hero: as cartas saem do centro ao carregar. */
+  .fan-card {
+    animation: fan-out 1100ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+    animation-delay: var(--delay, 0ms);
   }
-  @keyframes settle {
+  @keyframes fan-out {
     from {
-      transform: scale(1.06);
+      transform: translate(var(--dx), 12%) rotate(0deg);
+      opacity: 0;
     }
     to {
-      transform: scale(1);
+      transform: translate(0, 0) rotate(var(--r));
+      opacity: 1;
     }
   }
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+.fan-card {
+  transform: rotate(var(--r));
 }
