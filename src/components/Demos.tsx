@@ -33,7 +33,7 @@ export function Demos() {
                 <p className="mt-3 leading-relaxed text-ink/80">{demo.description}</p>
                 <div className="mt-auto pt-6">
                   {live ? (
-                    <ButtonLink href={demo.url!} variant="primary" aria-label={`Experimentar a demonstração ${demo.title} (abre em nova aba)`}>
+                    <ButtonLink href={demo.url!} target="_blank" rel="noopener noreferrer" variant="primary" aria-label={`Experimentar a demonstração ${demo.title} (abre em nova aba)`}>
                       Experimentar <ExternalIcon />
                     </ButtonLink>
                   ) : (

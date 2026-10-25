@@ -59,16 +59,26 @@ export const projects: Project[] = [
     preview: "leads",
   },
   {
-    id: "ellus-academia",
-    name: "Ellus Academia",
-    status: "em-desenvolvimento",
-    // Deixe `visible: false` se o site ainda não estiver pronto para ser mostrado.
+    id: "vetra-academia",
+    name: "Vetra Academia",
+    status: "conceitual",
     visible: true,
-    category: "Site institucional",
-    summary: "Site para uma academia, atualmente em desenvolvimento.",
-    highlights: ["Em desenvolvimento"],
-    technologies: ["React"],
-    liveUrl: null,
+    category: "Landing page",
+    summary:
+      "Landing page para uma academia fictícia, criada para mostrar como uma página pode levar o visitante a agendar uma visita pelo WhatsApp.",
+    highlights: [
+      "Planos, estrutura e perguntas frequentes",
+      "Botões de WhatsApp com mensagens pré-preenchidas",
+      "Formulário de agendamento de visita com validação",
+    ],
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    liveUrl: `${import.meta.env.BASE_URL}demos/vetra-academia/`,
+    image: {
+      src: "/demos/vetra-academia-preview.webp",
+      alt: "Topo da landing page da Vetra Academia, com foto de uma aluna levantando uma barra",
+      width: 1280,
+      height: 800,
+    },
     preview: "academia",
   },
 ];

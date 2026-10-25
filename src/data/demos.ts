@@ -10,6 +10,22 @@ import type { Demo } from "../types";
  */
 export const demos: Demo[] = [
   {
+    id: "demo-vetra-academia",
+    title: "Vetra Academia",
+    category: "Landing page",
+    description:
+      "Landing page para uma academia fictícia: planos, estrutura, perguntas frequentes e agendamento de visita pelo WhatsApp com mensagem pronta.",
+    availability: "disponivel",
+    url: `${import.meta.env.BASE_URL}demos/vetra-academia/`,
+    image: {
+      src: "/demos/vetra-academia-preview.webp",
+      alt: "Topo da landing page da Vetra Academia, com foto de uma aluna levantando uma barra",
+      width: 1280,
+      height: 800,
+    },
+    preview: "academia",
+  },
+  {
     id: "demo-eletricista",
     title: "Prestador de serviços elétricos",
     category: "Landing page",

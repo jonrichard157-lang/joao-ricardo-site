@@ -8,7 +8,7 @@ import { SectionHeader } from "./SectionHeader";
 import { StatusBadge } from "./StatusBadge";
 
 function addressFor(p: Project) {
-  if (p.liveUrl) return new URL(p.liveUrl).host;
+  if (p.liveUrl?.startsWith("http")) return new URL(p.liveUrl).host;
   return p.image ? p.name : `${p.name}, representação ilustrativa`;
 }
 
@@ -36,7 +36,7 @@ function ProjectInfo({ project, large }: { project: Project; large: boolean }) {
       </p>
       <div className="mt-7">
         {project.liveUrl ? (
-          <ButtonLink href={project.liveUrl} variant="outline" aria-label={`Visitar o site ${project.name} (abre em nova aba)`}>
+          <ButtonLink href={project.liveUrl} target="_blank" rel="noopener noreferrer" variant="outline" aria-label={`Visitar o site ${project.name} (abre em nova aba)`}>
             Visitar site <ExternalIcon />
           </ButtonLink>
         ) : (
@@ -82,7 +82,7 @@ export function Projects() {
 
         {rest.length > 0 && (
           <div className="mt-24 border-t border-ink/10 pt-16 lg:mt-32">
-            <h3 className="font-display text-2xl font-semibold tracking-[-0.02em]">Também em andamento</h3>
+            <h3 className="font-display text-2xl font-semibold tracking-[-0.02em]">Outros projetos</h3>
             <div className="mt-10 grid gap-14 md:grid-cols-2 md:gap-10">
               {rest.map((project) => (
                 <article key={project.id} aria-labelledby={`p-${project.id}`} className="flex min-w-0 flex-col gap-8">
