@@ -25,6 +25,12 @@ export const projects: Project[] = [
     ],
     technologies: ["React", "Vite"],
     liveUrl: "https://esleletrica.com/",
+    image: {
+      src: "/projects/esl-eletrica.webp",
+      alt: "Página inicial do site da ESL Elétrica, com o título Energia com Segurança e Precisão e o botão Solicitar orçamento",
+      width: 1080,
+      height: 675,
+    },
     preview: "eletrica",
   },
   {
@@ -42,6 +48,12 @@ export const projects: Project[] = [
     ],
     technologies: ["React", "TypeScript"],
     liveUrl: "https://dra-caroline-site-nine.vercel.app/",
+    image: {
+      src: "/projects/dra-caroline.webp",
+      alt: "Página inicial do site da Dra. Caroline, com o título Seu sorriso merece cuidado, atenção e confiança e foto da dentista no consultório",
+      width: 1080,
+      height: 675,
+    },
     preview: "clinica",
   },
   {
