@@ -38,7 +38,7 @@ function visitMessage(f: VisitForm) {
 }
 
 const field =
-  "mt-2 block w-full rounded-sm border-2 bg-paper px-4 py-3 text-iron placeholder:text-steel/70 focus:border-cobalt focus:outline-none";
+  "mt-2 block w-full rounded-xl border bg-smoke px-4 py-3 text-fog placeholder:text-ash/70 focus:border-signal focus:outline-none";
 
 export function Visit() {
   const [form, setForm] = useState<VisitForm>(empty);
@@ -74,30 +74,41 @@ export function Visit() {
     name: n,
     "aria-invalid": errors[n] ? true : undefined,
     "aria-describedby": errors[n] ? `${id(n)}-erro` : undefined,
-    className: `${field} ${errors[n] ? "border-[#c0352b]" : "border-iron/20"}`,
+    className: `${field} ${errors[n] ? "border-[#ff6b5e]" : "border-line"}`,
   });
   const Err = ({ n }: { n: keyof VisitForm }) =>
     errors[n] ? (
-      <p id={`${id(n)}-erro`} className="mt-2 text-sm font-semibold text-[#a52a21]">
+      <p id={`${id(n)}-erro`} className="mt-2 text-sm font-semibold text-[#ff8a80]">
         {errors[n]}
       </p>
     ) : null;
   const errorCount = Object.values(errors).filter(Boolean).length;
 
   return (
-    <section id="visita" aria-labelledby="visita-title" className="on-dark bg-iron py-20 text-paper sm:py-28 lg:py-36">
-      <div className="wrap grid gap-14 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-6">
-          <h2 id="visita-title" className="display text-[clamp(3.75rem,12vw,9rem)]">
-            Venha conhecer a Vetra
-          </h2>
-          <p className="mt-8 max-w-[44ch] text-lg text-paper/80">
-            Deixe seus dados e o melhor período. Um professor confirma o horário pelo WhatsApp e mostra a estrutura com
-            calma, sem compromisso de matrícula.
+    <section id="visita" aria-labelledby="visita-title" className="relative overflow-hidden py-10 sm:py-28">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[24rem] overflow-hidden select-none sm:h-[40rem]">
+        {Array.from({ length: 12 }, (_, i) => (
+          <p key={i} className="giant text-[2.6rem] whitespace-nowrap text-smoke sm:text-6xl" style={{ marginLeft: `${(i % 3) * -7}rem` }}>
+            {"Agende sua visita ".repeat(8)}
           </p>
-          <dl className="mt-10 grid gap-6 sm:grid-cols-2">
+        ))}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-ink)_30%,transparent_80%)]" />
+      </div>
+
+      <div className="wrap relative">
+        <div className="flex min-h-[20rem] flex-col items-center justify-center text-center sm:min-h-[32rem]">
+          <h2 id="visita-title" className="giant text-[clamp(3.6rem,17vw,10rem)]">
+            Agende sua visita!
+          </h2>
+          <p className="mt-6 max-w-[46ch] text-ash">
+            Deixe seus dados e o melhor período. Um professor confirma o horário pelo WhatsApp e mostra a estrutura com calma, sem compromisso de matrícula.
+          </p>
+        </div>
+
+        <div className="mt-6 grid gap-10 lg:grid-cols-12 lg:gap-10">
+          <dl className="grid content-start gap-8 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
             <div>
-              <dt className="text-sm text-paper/60">Endereço</dt>
+              <dt className="text-sm text-ash">Endereço</dt>
               <dd className="mt-1 font-semibold">
                 {brand.address}
                 <br />
@@ -105,29 +116,28 @@ export function Visit() {
               </dd>
             </div>
             <div>
-              <dt className="text-sm text-paper/60">Horários</dt>
-              <dd className="mt-1 space-y-0.5">
+              <dt className="text-sm text-ash">Horários</dt>
+              <dd className="mt-1 space-y-1 text-sm">
                 {brand.hours.map((h) => (
                   <span key={h.days} className="block">
-                    {h.days}: <strong>{h.time}</strong>
+                    {h.days}: <strong className="font-semibold">{h.time}</strong>
                   </span>
                 ))}
               </dd>
             </div>
           </dl>
-        </div>
 
         <form
           ref={formRef}
           noValidate
           onSubmit={submit}
           aria-labelledby={`${uid}-t`}
-          className="rounded-sm bg-paper p-6 text-iron sm:p-10 lg:col-span-6"
+          className="rounded-3xl bg-void p-6 sm:p-10 lg:col-span-8"
         >
-          <h3 id={`${uid}-t`} className="wide text-2xl font-bold">
+          <h3 id={`${uid}-t`} className="text-xl font-semibold">
             Agendar uma visita
           </h3>
-          <p className="mt-1 text-sm text-steel">Todos os campos, exceto observação, são obrigatórios.</p>
+          <p className="mt-1 text-sm text-ash">Todos os campos, exceto observação, são obrigatórios.</p>
           <p className="sr-only" aria-live="polite">
             {errorCount ? `Há ${errorCount} ${errorCount === 1 ? "campo" : "campos"} para corrigir.` : ""}
           </p>
@@ -181,23 +191,24 @@ export function Visit() {
 
           <button
             type="submit"
-            className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-cobalt px-6 text-lg font-semibold text-paper transition-colors hover:bg-cobalt-deep"
+            className="mt-8 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-signal px-6 font-semibold text-fog transition-colors hover:bg-fog hover:text-void"
           >
             Enviar pedido de visita pelo WhatsApp
           </button>
-          <p className="mt-3 text-center text-sm text-steel">Seus dados vão apenas na mensagem do WhatsApp, nada é armazenado neste site.</p>
+          <p className="mt-3 text-center text-xs text-ash">Seus dados vão apenas na mensagem do WhatsApp, nada é armazenado neste site.</p>
           {done && (
-            <p role="status" className="mt-5 rounded-sm bg-cobalt-soft/60 px-4 py-3 text-sm">
+            <p role="status" className="mt-5 rounded-xl border border-signal-soft/60 px-4 py-3 text-sm">
               Mensagem preparada. Confira e envie no WhatsApp para confirmar a visita.
             </p>
           )}
-          <p className="mt-6 border-t border-iron/10 pt-5 text-center text-sm">
+          <p className="mt-6 border-t border-line pt-5 text-center text-sm">
             Prefere escrever do seu jeito?{" "}
-            <WaCta message={messages.visit} className="font-semibold text-cobalt underline underline-offset-4">
+            <WaCta message={messages.visit} className="font-semibold text-signal-soft underline underline-offset-4">
               Abrir conversa sem formulário
             </WaCta>
           </p>
         </form>
+        </div>
       </div>
     </section>
   );

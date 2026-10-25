@@ -98,8 +98,12 @@ na seção Demonstrações (`src/data/demos.ts`).
 ### Vetra Academia — `/demos/vetra-academia/`
 
 Landing page de uma academia **fictícia**, feita para gerar pedidos de visita
-pelo WhatsApp. Ela tem identidade própria (Archivo condensada, giz, ferro e
-azul cobalto) e não compartilha estilos com o portfólio.
+pelo WhatsApp. Ela tem identidade própria e não compartilha estilos com o
+portfólio: fundo grafite, JetBrains Mono em toda a página, azul cobalto como
+destaque e um card amarelo. A composição foi inspirada no template Framer
+Mondragon 6 (palavras gigantes no hero com leque de fotos, faixa de pílulas,
+marcas de canto), reinterpretada em código próprio, sem copiar textos ou
+imagens do template.
 
 | Caminho | Conteúdo |
 | --- | --- |

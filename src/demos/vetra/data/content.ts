@@ -34,20 +34,39 @@ export const hero = {
   text: "Musculação, funcional e cardio com professores no salão e uma avaliação inicial para montar o seu treino. Venha conhecer a estrutura antes de decidir.",
 };
 
+/** Faixa de "pílulas" abaixo do hero: o que a academia oferece. */
+export const highlights = [
+  "Musculação",
+  "Funcional",
+  "Cardio",
+  "Avaliação inicial",
+  "Professores no salão",
+  "Reavaliação periódica",
+  "Seg a sex, 5h às 23h",
+];
+
+export const statement =
+  "Treinar bem é treinar com orientação. Aqui o treino começa por uma avaliação, segue com professores no salão e muda conforme você evolui.";
+
+/** Cada benefício traz um fato curto da própria academia (não são métricas de resultado). */
 export const benefits = [
   {
+    stat: "1º dia",
     title: "Um treino que começa por você",
     text: "Avaliação inicial com um professor para entender histórico, limitações e objetivo antes da primeira série.",
   },
   {
-    title: "Alguém olhando a execução",
-    text: "Professores circulando no salão em todos os horários para ajustar postura, carga e ritmo.",
+    stat: "8 sem.",
+    title: "Um treino que evolui",
+    text: "Reavaliação a cada 8 semanas nos planos Evolução e Completo, com ajuste do treino.",
   },
   {
+    stat: "4",
     title: "Espaço para treinar sem fila",
     text: "Áreas separadas para peso livre, máquinas, cardio e funcional, com equipamentos em quantidade.",
   },
   {
+    stat: "5h",
     title: "Horário que cabe na rotina",
     text: "Abertura às 5h e fechamento às 23h nos dias úteis, para treinar antes ou depois do trabalho.",
   },
@@ -91,6 +110,15 @@ export const areas: Area[] = [
     width: 1264,
     height: 848,
   },
+  {
+    id: "forca",
+    name: "Plataformas de força",
+    text: "Plataformas de levantamento e barras olímpicas para treinos de força com segurança.",
+    image: "pegada",
+    alt: "Mãos com magnésio segurando uma barra olímpica, com pó de giz no ar",
+    width: 928,
+    height: 1152,
+  },
 ];
 
 export const equipment = [
@@ -110,7 +138,7 @@ export interface Plan {
   price: string;
   period: string;
   includes: string[];
-  tone: "chalk" | "cobalt" | "iron";
+  tone: "void" | "signal" | "smoke";
 }
 
 export const plans: Plan[] = [
@@ -121,7 +149,7 @@ export const plans: Plan[] = [
     price: "129",
     period: "por mês",
     includes: ["Musculação e cardio", "Avaliação inicial", "Treino montado por um professor", "Acesso em todos os horários"],
-    tone: "chalk",
+    tone: "void",
   },
   {
     id: "evolucao",
@@ -130,7 +158,7 @@ export const plans: Plan[] = [
     price: "169",
     period: "por mês",
     includes: ["Tudo do plano Base", "Aulas de funcional em grupo", "Reavaliação a cada 8 semanas", "Ajuste do treino a cada reavaliação"],
-    tone: "cobalt",
+    tone: "signal",
   },
   {
     id: "completo",
@@ -139,7 +167,7 @@ export const plans: Plan[] = [
     price: "249",
     period: "por mês",
     includes: ["Tudo do plano Evolução", "Uma sessão individual por mês com professor", "Plano de treino individualizado", "Acompanhamento pelo aplicativo de treino"],
-    tone: "iron",
+    tone: "smoke",
   },
 ];
 

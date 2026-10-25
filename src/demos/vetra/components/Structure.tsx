@@ -1,53 +1,43 @@
 import { areas, equipment } from "../data/content";
-import type { Area } from "../data/content";
+import { Label } from "./Frame";
 import { Photo } from "./Photo";
 
-function AreaFigure({ area, className, sizes, ratio, wide = true }: { area: Area; className: string; sizes: string; ratio: string; wide?: boolean }) {
-  return (
-    <figure className={className}>
-      <div className={`overflow-hidden rounded-sm ${ratio}`}>
-        <Photo name={area.image} width={area.width} height={area.height} alt={area.alt} sizes={sizes} />
-      </div>
-      <figcaption className={`mt-4 grid gap-1 ${wide ? "sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6" : ""}`}>
-        <span className="wide text-lg font-bold text-paper">{area.name}</span>
-        <span className="text-paper/70">{area.text}</span>
-      </figcaption>
-    </figure>
-  );
-}
-
 export function Structure() {
-  const [main, functional, cardio] = areas;
   return (
-    <section id="estrutura" aria-labelledby="estrutura-title" className="on-dark bg-iron py-20 text-paper sm:py-28 lg:py-36">
+    <section id="estrutura" aria-labelledby="estrutura-title" className="py-20 sm:py-28">
       <div className="wrap">
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <h2 id="estrutura-title" className="display text-[clamp(3rem,9vw,6.5rem)] lg:col-span-7">
-            Estrutura para cada tipo de treino
-          </h2>
-          <p className="max-w-[44ch] text-lg text-paper/75 lg:col-span-4 lg:col-start-9">
-            Áreas separadas para força, funcional e cardio, para você treinar sem disputar espaço.
-          </p>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <Label id="estrutura-title">Estrutura</Label>
+          <a href="#planos" className="pill min-h-10">
+            Ver planos
+          </a>
         </div>
+        <p className="mt-4 max-w-[52ch] text-ash">Áreas separadas para força, funcional e cardio, para você treinar sem disputar espaço.</p>
 
-        <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-12 lg:gap-10">
-          <AreaFigure area={main} className="lg:col-span-8" ratio="aspect-[3/2]" sizes="(min-width: 1024px) 64vw, 100vw" />
-          <AreaFigure area={functional} wide={false} className="lg:col-span-4 lg:row-span-2" ratio="aspect-[4/5] lg:aspect-[3/5]" sizes="(min-width: 1024px) 32vw, 100vw" />
-          <div className="lg:col-span-3">
-            <h3 className="wide text-lg font-bold">Equipamentos</h3>
-            <ul className="mt-4 divide-y divide-paper/15 border-y border-paper/15">
-              {equipment.map((e) => (
-                <li key={e} className="py-2.5 text-paper/85">
-                  {e}
-                </li>
-              ))}
-            </ul>
-            <a href="#visita" className="mt-6 inline-flex min-h-11 items-center font-semibold underline decoration-cobalt decoration-2 underline-offset-[6px] hover:text-cobalt-soft">
-              Conhecer a estrutura pessoalmente
-            </a>
-          </div>
-          <AreaFigure area={cardio} className="lg:col-span-5" ratio="aspect-[3/2]" sizes="(min-width: 1024px) 40vw, 100vw" />
-        </div>
+        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-4">
+          {areas.map((a) => (
+            <li key={a.id}>
+              <figure>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-smoke sm:rounded-3xl lg:aspect-square">
+                  <Photo name={a.image} width={a.width} height={a.height} alt={a.alt} sizes="(min-width: 1024px) 24vw, 48vw" />
+                  <figcaption className="absolute bottom-2.5 left-2.5 rounded-full bg-fog px-2.5 py-0.5 text-xs font-semibold text-void sm:bottom-4 sm:left-4 sm:px-3 sm:py-1 sm:text-sm">
+                    {a.name}
+                  </figcaption>
+                </div>
+                <p className="mt-3 px-1 text-xs leading-relaxed text-ash sm:text-sm">{a.text}</p>
+              </figure>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="sr-only">Equipamentos</h3>
+        <ul className="mt-10 flex flex-wrap gap-2 text-sm">
+          {equipment.map((e) => (
+            <li key={e} className="rounded-full border border-line px-3.5 py-1.5 text-fog/85">
+              {e}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
