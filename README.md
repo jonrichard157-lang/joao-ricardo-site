@@ -106,6 +106,19 @@ src/
 3. Depois de definir o domínio, adicione `<link rel="canonical">` e troque
    `og:image` por URL absoluta em `index.html`.
 
+## Deploy no GitHub Pages
+
+O workflow `.github/workflows/pages.yml` compila e publica o site a cada push
+na `main` (ou manualmente, em Actions → Deploy no GitHub Pages → Run workflow).
+
+1. No GitHub: Settings → Pages → Source: **GitHub Actions** (uma vez só).
+2. Opcional: em Settings → Secrets and variables → Actions → **Variables**,
+   crie `VITE_WHATSAPP_NUMBER`, `VITE_CONTACT_EMAIL` e `VITE_FORM_ENDPOINT`.
+3. O site fica em `https://jonrichard157-lang.github.io/joao-ricardo-site/`.
+
+O caminho base vem de `BASE_PATH` (definido no workflow); na Vercel ele não
+é usado e o site fica na raiz do domínio.
+
 ## Antes de publicar
 
 - [ ] Definir `VITE_WHATSAPP_NUMBER`, `VITE_CONTACT_EMAIL` e `VITE_FORM_ENDPOINT`

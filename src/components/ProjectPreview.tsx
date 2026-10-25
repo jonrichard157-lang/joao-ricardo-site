@@ -8,7 +8,7 @@ export function ProjectPreview({ variant, image, eager = false }: { variant: Pre
   if (image) {
     return (
       <img
-        src={image.src}
+        src={`${import.meta.env.BASE_URL}${image.src.replace(/^\//, "")}`}
         alt={image.alt}
         width={image.width}
         height={image.height}
