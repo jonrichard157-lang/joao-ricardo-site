@@ -8,8 +8,8 @@ import { SectionHeader } from "./SectionHeader";
 import { StatusBadge } from "./StatusBadge";
 
 function addressFor(p: Project) {
-  if (p.liveUrl?.startsWith("http")) return new URL(p.liveUrl).host;
-  return p.image ? p.name : `${p.name}, representação ilustrativa`;
+  const label = p.liveUrl?.startsWith("http") ? new URL(p.liveUrl).host : p.name;
+  return p.image ? label : `${label}, representação ilustrativa`;
 }
 
 function ProjectInfo({ project, large }: { project: Project; large: boolean }) {

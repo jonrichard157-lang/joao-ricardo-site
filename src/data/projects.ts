@@ -24,7 +24,7 @@ export const projects: Project[] = [
       "Layout responsivo para celular e computador",
     ],
     technologies: ["React", "Vite"],
-    liveUrl: null,
+    liveUrl: "https://esleletrica.com/",
     preview: "eletrica",
   },
   {
@@ -41,7 +41,7 @@ export const projects: Project[] = [
       "Contato direto pelo WhatsApp",
     ],
     technologies: ["React", "TypeScript"],
-    liveUrl: null,
+    liveUrl: "https://dra-caroline-site-nine.vercel.app/",
     preview: "clinica",
   },
   {
