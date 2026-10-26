@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "index.html"),
         vetra: resolve(import.meta.dirname, "demos/vetra-academia/index.html"),
+        nativa: resolve(import.meta.dirname, "demos/nativa-casa/index.html"),
       },
     },
   },

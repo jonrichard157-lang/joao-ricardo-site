@@ -10,6 +10,22 @@ import type { Demo } from "../types";
  */
 export const demos: Demo[] = [
   {
+    id: "demo-nativa-casa",
+    title: "Nativa Casa",
+    category: "E-commerce",
+    description:
+      "Loja virtual de decoração para uma marca fictícia: catálogo com busca, filtros e ordenação, página de produto, carrinho e checkout demonstrativo sem pagamento.",
+    availability: "disponivel",
+    url: `${import.meta.env.BASE_URL}demos/nativa-casa/`,
+    image: {
+      src: "/demos/nativa-casa-preview.webp",
+      alt: "Página inicial da loja Nativa Casa, com o título Objetos para uma casa que respira e a foto de um vaso de cerâmica",
+      width: 1280,
+      height: 800,
+    },
+    preview: "catalogo",
+  },
+  {
     id: "demo-vetra-academia",
     title: "Vetra Academia",
     category: "Landing page",

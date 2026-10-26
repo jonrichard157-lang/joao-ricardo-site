@@ -1,0 +1,61 @@
+@import "tailwindcss" source(none);
+@source "./";
+
+@theme {
+  --color-linen: #f3f2ef;
+  --color-paper: #fbfaf8;
+  --color-ink: #1d1c1a;
+  --color-stone: #6a655d;
+  --color-line: #dad6cf;
+  --color-moss: #3e4b36;
+  --color-moss-soft: #dfe3d6;
+  --color-error: #9b2c1f;
+
+  --font-serif: "Gloock", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-linen font-sans text-ink antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-paper);
+  }
+}
+
+@utility wrap {
+  @apply mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-10;
+}
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 px-6 text-[0.95rem] font-semibold tracking-[0.01em] transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-dark {
+  @apply btn bg-ink text-paper hover:bg-moss;
+}
+@utility btn-line {
+  @apply btn border border-ink text-ink hover:bg-ink hover:text-paper;
+}
+@utility link {
+  @apply underline decoration-ink/30 underline-offset-4 hover:decoration-ink;
+}
+@utility field {
+  @apply mt-1.5 block min-h-12 w-full border bg-paper px-3.5 text-ink placeholder:text-stone/70 focus:border-ink focus:outline-none;
+}
