@@ -139,6 +139,75 @@ tamanhos, ou ajuste os nomes em `content.ts` e nos componentes.
 defina `VITE_VETRA_WHATSAPP`, remova o `DemoBanner` (`components/Header.tsx`),
 o `noindex` do HTML e a nota de demonstração do rodapé.
 
+### Nativa Casa — `/demos/nativa-casa/`
+
+Loja virtual de decoração de uma marca **fictícia**, usada como demonstração
+de e-commerce. Identidade própria: fundo claro neutro, serifa editorial
+(Gloock) com Hanken Grotesk na interface, detalhes em tinta escura e verde-musgo.
+
+| Caminho | Conteúdo |
+| --- | --- |
+| `demos/nativa-casa/index.html` | HTML da loja (título, descrição, `noindex`) |
+| `src/demos/nativa/data/catalog.ts` | Categorias, 12 produtos (nome, preço em centavos, categoria, material, descrição, medidas, cuidados, imagem), faixas de preço e ordenações |
+| `src/demos/nativa/lib/catalog.ts` | Busca, filtros, ordenação, formatação de preço e filtros ↔ URL |
+| `src/demos/nativa/lib/cart.tsx` | Carrinho (reducer + contexto), persistido no navegador |
+| `src/demos/nativa/lib/router.ts` | Rotas por hash (`#/loja`, `#/produto/<slug>`, `#/carrinho`, `#/checkout`) |
+| `src/demos/nativa/pages/` | Início, catálogo, produto, carrinho, checkout e página não encontrada |
+| `src/demos/nativa/components/` | Layout, card de produto, foto, preço, seletor de quantidade, estado vazio |
+| `public/demos/nativa-casa/img/` | Fotos dos produtos em WebP (928px + 480px) |
+
+As rotas usam hash para funcionar em qualquer hospedagem estática (Vercel ou
+GitHub Pages) sem regras de reescrita.
+
+#### O que funciona no modo demonstrativo
+
+- Página inicial com destaque, categorias, novidades e seção editorial.
+- Catálogo com busca por nome (ignora acentos), filtro por categoria, material
+  e faixa de preço, ordenação (destaques, preço, nome) e filtros ativos
+  removíveis. Os filtros ficam na URL, então dá para compartilhar e recarregar.
+- Página de produto com descrição, material, medidas, cuidados, seleção de
+  quantidade (1 a 10) e produtos relacionados.
+- Carrinho com alteração de quantidade, remoção de itens, subtotal e contador
+  no cabeçalho. Ele é salvo no `localStorage` do navegador **apenas com o id e a
+  quantidade de cada produto**.
+- Checkout em duas etapas (entrega e revisão) com validação de nome, e-mail,
+  CEP (com máscara), endereço, cidade e estado, e mensagens de erro por campo.
+- Confirmação final que deixa claro que **nenhum pedido foi criado, nenhum
+  pagamento foi feito e nenhum dado foi enviado ou salvo**. Os dados de entrega
+  ficam só na memória da página e são descartados ao concluir.
+- Estados vazios: busca sem resultado, carrinho vazio, checkout sem itens e
+  produto inexistente.
+- Sem campos de cartão, sem gateway de pagamento, sem avaliações de clientes.
+
+#### O que seria necessário para uma loja de produção
+
+1. **Catálogo e estoque:** mover os produtos para um banco de dados ou CMS de
+   e-commerce (por exemplo, Shopify via Storefront API, Nuvemshop, Medusa ou
+   um backend próprio), com estoque por produto ou variação, reservado no
+   checkout e baixado após a confirmação do pagamento.
+2. **Pedidos:** um backend (por exemplo, funções serverless na Vercel e um banco
+   como Postgres) para criar pedidos, recalcular preços no servidor (nunca
+   confiar no total enviado pelo navegador) e guardar o histórico de status.
+3. **Pagamento:** integrar um gateway (Mercado Pago, Pagar.me, Stripe etc.) com
+   Pix, cartão e boleto pelo checkout do próprio gateway ou pelos campos
+   seguros dele (tokenização). Os dados de cartão nunca devem passar pelo
+   servidor da loja. Confirmar o pagamento por **webhook**, não pelo
+   redirecionamento do navegador. Chaves secretas ficam só no servidor.
+4. **Frete:** cálculo real por CEP (Correios, Melhor Envio ou transportadora)
+   e geração de etiquetas.
+5. **Clientes e privacidade (LGPD):** política de privacidade, termos de uso,
+   base legal para cada dado coletado, prazo de retenção e, se houver contas,
+   autenticação segura.
+6. **Operação:** e-mails transacionais (pedido recebido, pago, enviado), painel
+   administrativo, emissão de nota fiscal, política de trocas e devoluções
+   (Código de Defesa do Consumidor) e dados da empresa (CNPJ, endereço,
+   contato) no rodapé.
+7. **SEO e medição:** URLs sem hash (rotas reais com reescrita na Vercel ou
+   um framework com SSR, como Next.js), dados estruturados de produto e
+   analytics com consentimento.
+8. **Conteúdo real:** fotos dos produtos, preços, textos e marca do cliente;
+   remover o aviso de demonstração e o `noindex`.
+
 ## Identidade visual
 
 - Base creme `#F8F3E3`, texto grafite `#222222`
